@@ -1,6 +1,6 @@
 # default.nix
 
-{ lib, config, ... }:
+{ lib, ... }:
 
 {
   imports = [
