@@ -14,5 +14,14 @@ jobs:
       with:
         name: 24d404c2031ae73edd0f9ad209bb5d0a
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: ls
-    - run: nix build .#nixosConfigurations.exampleIso.config.system.build.isoImage
+    - name: Build
+      run: |
+        nix build .#nixosConfigurations.exampleIso.config.system.build.isoImage
+        ls result/iso/
+        mkdir out && mv result/iso/*.iso out/nix.iso
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
+      with:
+        name: nix.iso
+        path: out/nix.iso
+    
