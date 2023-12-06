@@ -17,12 +17,9 @@ jobs:
     - name: Build
       run: |
         nix build .#nixosConfigurations.exampleIso.config.system.build.isoImage
-        ls -lah result/iso/
-        ls -lah .
-        mkdir out && ln -s $(find result/iso/ -name '*.iso' -print -quit) out/nix.iso
     - name: Archive nix
       uses: actions/upload-artifact@v3
       with:
         name: nix.iso
-        path: out/nix.iso
+        path: result/iso/*.iso
     
