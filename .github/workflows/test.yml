@@ -15,5 +15,4 @@ jobs:
         name: 24d404c2031ae73edd0f9ad209bb5d0a
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: ls
-    - run: nix-build
-    - run: nix-build .#nixosConfigurations.exampleIso.config.system.build.isoImage
+    - run: nix build .#nixosConfigurations.exampleIso.config.system.build.isoImage
