@@ -9,6 +9,13 @@
           "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           ({ pkgs, ... }: {
             environment.systemPackages = [ pkgs.neovim ];
+            users.mutableUsers = false;
+            users.users.nix = {
+              isNormalUser  = true;
+              home  = "/home/nix";
+              description  = "nix os";
+              extraGroups  = [ "wheel" ];
+            };
           })
         ];
       };
