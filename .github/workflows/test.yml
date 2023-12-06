@@ -9,8 +9,11 @@ jobs:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v20
       with:
-        nix_path: nixpkgs=channel:nixos-unstable
-    - uses: DeterminateSystems/magic-nix-cache-action@v2
+        nix_path: nixpkgs=channel:nixos-23.05
+    - uses: cachix/cachix-action@v12
+      with:
+        name: nixos-cache
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix-build
     - run: nix-shell --run "echo OK"
     
