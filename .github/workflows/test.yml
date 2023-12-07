@@ -16,7 +16,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - name: Build
       run: |
-        nix build .#nixosConfigurations.exampleIso.config.system.build.isoImage
+        nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=iso.nix
     - name: Archive nix
       uses: actions/upload-artifact@v3
       with:
